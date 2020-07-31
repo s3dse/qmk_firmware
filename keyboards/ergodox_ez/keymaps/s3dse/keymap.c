@@ -32,37 +32,13 @@ enum {
     TD_BR_R,
 };
 
-void tap_dance_parens_left(qk_tap_dance_state_t *state, void *user_data) {
-  if (state->count == 1) {
-      tap_code16(KC_LPRN);
-  } else if (state->count == 2) {
-      tap_code(KC_LBRACKET);
-  } else if (state->count == 3) {
-      tap_code16(KC_LCBR);
-  } else {
-      reset_tap_dance(state);
-  }
-}
-
-void tap_dance_parens_right(qk_tap_dance_state_t *state, void *user_data) {
-  if (state->count == 1) {
-      tap_code16(KC_RPRN);
-  } else if (state->count == 2) {
-      tap_code(KC_RBRACKET);
-  } else if (state->count == 3) {
-      tap_code16(KC_RCBR);
-  } else {
-      reset_tap_dance(state);
-  }
-}
 
 qk_tap_dance_action_t tap_dance_actions[] = {
     // Tap once for parenthesis, twice for bracket, three times for curly brace
-    [TD_BR_L] = ACTION_TAP_DANCE_FN(tap_dance_parens_left),
-    [TD_BR_R] = ACTION_TAP_DANCE_FN(tap_dance_parens_right),
+    [TD_BR_L] = ACTION_TAP_DANCE_DOUBLE(KC_LBRACKET, KC_LCBR),
+    [TD_BR_R] = ACTION_TAP_DANCE_DOUBLE(KC_RBRACKET, KC_RCBR),
 
 };
-
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
