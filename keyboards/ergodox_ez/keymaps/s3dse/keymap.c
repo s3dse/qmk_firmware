@@ -537,67 +537,67 @@ void process_combo_event(uint8_t combo_index, bool pressed) {
   switch(combo_index) {
     case TJ_MINUS:
       if (pressed) {
-        SEND_STRING("-");
+          tap_code16(KC_MINUS);
       }
       break;
     case TY_UNDERSCORE:
       if (pressed) {
-        SEND_STRING("_");
+          tap_code16(KC_UNDERSCORE);
       }
       break;
     case TK_AMPERSAND:
       if (pressed) {
-        SEND_STRING("&");
+          tap_code16(KC_AMPERSAND);
       }
       break;
     case TF_EQUALS:
       if (pressed) {
-        SEND_STRING("=");
+          tap_code16(KC_EQUAL);
       }
       break;
     case TN_LCURLYBRACE:
       if (pressed) {
-        SEND_STRING("{");
+          tap_code16(KC_LEFT_CURLY_BRACE);
       }
       break;
     case TL_SINGLEQUOTE:
       if (pressed) {
-        SEND_STRING("'");
+          tap_code16(KC_QUOTE);
       }
       break;
     case TU_LOWERTHAN:
       if (pressed) {
-        SEND_STRING("<");
+          tap_code16(KC_LEFT_ANGLE_BRACKET);
       }
       break;
     case TE_RCURLYBRACE:
       if (pressed) {
-        SEND_STRING("}");
+          tap_code16(KC_RIGHT_CURLY_BRACE);
       }
       break;
     case TCOMMA_DOUBLEQUOTE:
       if (pressed) {
-        SEND_STRING("\"");
+          tap_code16(KC_DOUBLE_QUOTE);
       }
       break;
     case TP_GREATERTHAN:
       if (pressed) {
-        SEND_STRING(">");
+          tap_code16(KC_RIGHT_ANGLE_BRACKET);
       }
       break;
     case TCOLON_STAR:
       if (pressed) {
-        SEND_STRING("*");
+          tap_code16(KC_ASTERISK);
       }
       break;
     case TI_PLUS:
       if (pressed) {
-        SEND_STRING("+");
+          tap_code16(KC_PLUS);
       }
       break;
     case TSLASH_BSLASH:
       if (pressed) {
-        SEND_STRING("\\");
+          tap_code16(KC_BSLASH);
       }
       break;
   }
