@@ -53,7 +53,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_ergodox_pretty(
     KC_TRANSPARENT, KC_1,           KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 TG(1),          KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
     KC_TRANSPARENT, LT(7,KC_Q),     KC_D,           KC_R,           KC_W,           KC_B,           KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_J,           KC_F,           KC_U,           KC_P,           LT(7,KC_SCOLON),KC_TRANSPARENT,
-    DYN_REC_START1, LGUI_T(KC_A),   KC_S,           LT(9,KC_H),     LT(4,KC_T),     LT(5,KC_G),                                                                     LT(1,KC_Y),     LT(3,KC_N),     KC_E,           KC_O,           RGUI_T(KC_I),   DYN_MACRO_PLAY1,
+    DYN_REC_START1, LGUI_T(KC_A),   KC_S,           LT(9,KC_H),     KC_T,     LT(5,KC_G),                                                                     LT(1,KC_Y),     LT(3,KC_N),     KC_E,           KC_O,           RGUI_T(KC_I),   DYN_MACRO_PLAY1,
     KC_TRANSPARENT, LCTL_T(KC_Z),   LALT_T(KC_X),   KC_M,           KC_C,           KC_V,           DYN_REC_START2,                                 DYN_MACRO_PLAY2,KC_K,           KC_L,           KC_COMMA,       RALT_T(KC_DOT), RCTL_T(KC_SLASH),KC_TRANSPARENT,
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, MO(8),          KC_DELETE,                                                                                                      KC_ESCAPE,      MO(8),          KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
                                                                                                     ST_MACRO_0,     KC_TRANSPARENT, KC_LEAD, ST_MACRO_1,
@@ -481,5 +481,124 @@ void matrix_scan_user(void) {
     //   unregister_code(KC_S);
     //   unregister_code(KC_LGUI);
     // }
+  }
+}
+
+enum combo_events {
+  TJ_MINUS,
+  TY_UNDERSCORE,
+  TK_AMPERSAND,
+  TF_EQUALS,
+  TN_LCURLYBRACE,
+  TL_SINGLEQUOTE,
+  TU_LOWERTHAN,
+  TE_RCURLYBRACE,
+  TCOMMA_DOUBLEQUOTE,
+  TP_GREATERTHAN,
+  TCOLON_STAR,
+  TI_PLUS,
+  TSLASH_BSLASH
+};
+
+// const uint16_t PROGMEM copy_combo[] = {KC_Z, KC_C, COMBO_END};
+// const uint16_t PROGMEM paste_combo[] = {KC_X, KC_V, COMBO_END};
+
+const uint16_t PROGMEM tj_minus_combo[] = {KC_T, KC_J, COMBO_END};
+const uint16_t PROGMEM ty_underscore_combo[] = {KC_T, KC_Y, COMBO_END};
+const uint16_t PROGMEM tk_ampersand_combo[] = {KC_T, KC_K, COMBO_END};
+const uint16_t PROGMEM tf_equals_combo[] = {KC_T, KC_F, COMBO_END};
+const uint16_t PROGMEM tn_lcurlybrace_combo[] = {KC_T, KC_N, COMBO_END};
+const uint16_t PROGMEM tl_singlequote_combo[] = {KC_T, KC_L, COMBO_END};
+const uint16_t PROGMEM tu_lowerthan_combo[] = {KC_T, KC_U, COMBO_END};
+const uint16_t PROGMEM te_rcurlybrace_combo[] = {KC_T, KC_E, COMBO_END};
+const uint16_t PROGMEM tcomma_doublequote_combo[] = {KC_T, KC_COMMA, COMBO_END};
+const uint16_t PROGMEM tp_greaterthan_combo[] = {KC_T, KC_P, COMBO_END};
+const uint16_t PROGMEM tcolon_star_combo[] = {KC_T, KC_SCOLON, COMBO_END};
+const uint16_t PROGMEM ti_plus_combo[] = {KC_T, KC_I, COMBO_END};
+const uint16_t PROGMEM tslash_bslash_combo[] = {KC_T, KC_SLASH, COMBO_END};
+
+combo_t key_combos[COMBO_COUNT] = {
+  [TJ_MINUS] = COMBO_ACTION(tj_minus_combo),
+  [TY_UNDERSCORE] = COMBO_ACTION(ty_underscore_combo),
+  [TK_AMPERSAND] = COMBO_ACTION(tk_ampersand_combo),
+  [TF_EQUALS] = COMBO_ACTION(tf_equals_combo),
+  [TN_LCURLYBRACE] = COMBO_ACTION(tn_lcurlybrace_combo),
+  [TL_SINGLEQUOTE] = COMBO_ACTION(tl_singlequote_combo),
+  [TU_LOWERTHAN] = COMBO_ACTION(tu_lowerthan_combo),
+  [TE_RCURLYBRACE] = COMBO_ACTION(te_rcurlybrace_combo),
+  [TCOMMA_DOUBLEQUOTE] = COMBO_ACTION(tcomma_doublequote_combo),
+  [TP_GREATERTHAN] = COMBO_ACTION(tp_greaterthan_combo),
+  [TCOLON_STAR] = COMBO_ACTION(tcolon_star_combo),
+  [TI_PLUS] = COMBO_ACTION(ti_plus_combo),
+  [TSLASH_BSLASH] = COMBO_ACTION(tslash_bslash_combo)
+};
+
+void process_combo_event(uint8_t combo_index, bool pressed) {
+  switch(combo_index) {
+    case TJ_MINUS:
+      if (pressed) {
+        SEND_STRING("-");
+      }
+      break;
+    case TY_UNDERSCORE:
+      if (pressed) {
+        SEND_STRING("_");
+      }
+      break;
+    case TK_AMPERSAND:
+      if (pressed) {
+        SEND_STRING("&");
+      }
+      break;
+    case TF_EQUALS:
+      if (pressed) {
+        SEND_STRING("=");
+      }
+      break;
+    case TN_LCURLYBRACE:
+      if (pressed) {
+        SEND_STRING("{");
+      }
+      break;
+    case TL_SINGLEQUOTE:
+      if (pressed) {
+        SEND_STRING("'");
+      }
+      break;
+    case TU_LOWERTHAN:
+      if (pressed) {
+        SEND_STRING("<");
+      }
+      break;
+    case TE_RCURLYBRACE:
+      if (pressed) {
+        SEND_STRING("}");
+      }
+      break;
+    case TCOMMA_DOUBLEQUOTE:
+      if (pressed) {
+        SEND_STRING("\"");
+      }
+      break;
+    case TP_GREATERTHAN:
+      if (pressed) {
+        SEND_STRING(">");
+      }
+      break;
+    case TCOLON_STAR:
+      if (pressed) {
+        SEND_STRING("*");
+      }
+      break;
+    case TI_PLUS:
+      if (pressed) {
+        SEND_STRING("+");
+      }
+      break;
+    case TSLASH_BSLASH:
+      if (pressed) {
+        SEND_STRING("\\");
+      }
+      break;
   }
 }

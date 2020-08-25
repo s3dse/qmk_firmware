@@ -16,3 +16,6 @@
 
 #define LEADER_TIMEOUT 500
 #define LEADER_PER_KEY_TIMING
+
+#define COMBO_COUNT 13
+#define COMBO_TERM 300
