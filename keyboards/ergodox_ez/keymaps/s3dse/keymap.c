@@ -51,24 +51,24 @@ enum custom_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_ergodox_pretty(
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 TG(1),          KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
-    KC_TRANSPARENT, LT(8,KC_Q),     KC_D,           KC_R,           KC_W,           KC_B,           KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_J,           KC_F,           KC_U,           KC_P,           LT(7,KC_SCOLON),KC_TRANSPARENT,
-    DYN_REC_START1, LGUI_T(KC_A),   KC_S,           LT(9,KC_H),    LT(4,KC_T),     LT(5,KC_G),                                                                     LT(1,KC_Y),     LT(3,KC_N),     KC_E,           KC_O,           RGUI_T(KC_I),   DYN_MACRO_PLAY1,
+    KC_TRANSPARENT, KC_1,           KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 TG(1),          KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
+    KC_TRANSPARENT, LT(7,KC_Q),     KC_D,           KC_R,           KC_W,           KC_B,           KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_J,           KC_F,           KC_U,           KC_P,           LT(7,KC_SCOLON),KC_TRANSPARENT,
+    DYN_REC_START1, LGUI_T(KC_A),   KC_S,           LT(9,KC_H),     LT(4,KC_T),     LT(5,KC_G),                                                                     LT(1,KC_Y),     LT(3,KC_N),     KC_E,           KC_O,           RGUI_T(KC_I),   DYN_MACRO_PLAY1,
     KC_TRANSPARENT, LCTL_T(KC_Z),   LALT_T(KC_X),   KC_M,           KC_C,           KC_V,           DYN_REC_START2,                                 DYN_MACRO_PLAY2,KC_K,           KC_L,           KC_COMMA,       RALT_T(KC_DOT), RCTL_T(KC_SLASH),KC_TRANSPARENT,
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, MO(8),          KC_DELETE,                                                                                                      KC_ESCAPE,      MO(8),          KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
-                                                                                                    ST_MACRO_0,     KC_TRANSPARENT, KC_TRANSPARENT, ST_MACRO_1,
-                                                                                                                    LALT(KC_LSHIFT),KC_LEAD,
+                                                                                                    ST_MACRO_0,     KC_TRANSPARENT, KC_LEAD, ST_MACRO_1,
+                                                                                                                    LALT(KC_LSHIFT),KC_TRANSPARENT,
                                                                                     LSFT_T(KC_SPACE),KC_BSPACE,      MO(6),          DYN_REC_STOP,   KC_TAB,         RSFT_T(KC_ENTER)
   ),
   [1] = LAYOUT_ergodox_pretty(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, RESET,
-    KC_TRANSPARENT, KC_MS_ACCEL2,   KC_TRANSPARENT, KC_MS_UP,       KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 RGB_VAI,        KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
-    KC_TRANSPARENT, KC_MS_ACCEL1,   KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_RIGHT,    KC_TRANSPARENT,                                                                 KC_TRANSPARENT, KC_MS_BTN1,     KC_MS_BTN2,     KC_TRANSPARENT, KC_TRANSPARENT, KC_MEDIA_PLAY_PAUSE,
-    KC_TRANSPARENT, KC_MS_ACCEL0,   KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 RGB_VAD,        KC_TRANSPARENT, KC_TRANSPARENT, KC_MEDIA_PREV_TRACK,KC_MEDIA_NEXT_TRACK,KC_TRANSPARENT, KC_TRANSPARENT,
+    KC_TRANSPARENT, KC_MS_ACCEL2,   KC_TRANSPARENT, KC_MS_UP,       KC_TRANSPARENT, KC_TRANSPARENT, RGB_HUI,                                        RGB_VAI,        KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
+    KC_TRANSPARENT, KC_MS_ACCEL1,   KC_MS_LEFT,     KC_MS_DOWN,     KC_MS_RIGHT,    KC_TRANSPARENT,                                                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_HYPR,        KC_MEDIA_PLAY_PAUSE,
+    KC_TRANSPARENT, KC_MS_ACCEL0,   KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, RGB_HUD,                                        RGB_VAD,        KC_TRANSPARENT, KC_TRANSPARENT, KC_MEDIA_PREV_TRACK,KC_MEDIA_NEXT_TRACK,KC_TRANSPARENT, KC_TRANSPARENT,
     WEBUSB_PAIR,    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                                                                                 KC_AUDIO_VOL_UP,KC_AUDIO_VOL_DOWN,KC_AUDIO_MUTE,  KC_TRANSPARENT, KC_TRANSPARENT,
                                                                                                     RGB_MOD,        HSV_172_255_255,RGB_TOG,        RGB_SLD,
                                                                                                                     HSV_86_255_128, HSV_215_255_128,
-                                                                                    KC_MS_WH_UP,    KC_MS_WH_DOWN,  KC_TRANSPARENT, HSV_0_255_255,  RGB_HUI,        RGB_HUD
+                                                                                    KC_MS_WH_UP,    KC_MS_WH_DOWN,  KC_TRANSPARENT, HSV_0_255_255,  KC_MS_BTN1,     KC_MS_BTN2
   ),
   [2] = LAYOUT_ergodox_pretty(
     KC_ESCAPE,      KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,          KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_TRANSPARENT,
@@ -453,6 +453,12 @@ void matrix_scan_user(void) {
     }
     SEQ_ONE_KEY(KC_F) {
       SEND_STRING("function");
+    }
+    SEQ_TWO_KEYS(KC_R, KC_T) {
+      SEND_STRING("return true");
+    }
+    SEQ_TWO_KEYS(KC_R, KC_F) {
+      SEND_STRING("return false");
     }
     SEQ_TWO_KEYS(KC_G, KC_C) {
       SEND_STRING("git commit -m \"\"");
