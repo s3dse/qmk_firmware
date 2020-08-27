@@ -483,3 +483,14 @@ void matrix_scan_user(void) {
     // }
   }
 }
+
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LGUI_T(KC_A):
+            return TAPPING_TERM + 1250;
+        case RGUI_T(KC_I):
+            return TAPPING_TERM + 1250;
+        default:
+            return TAPPING_TERM;
+    }
+}
