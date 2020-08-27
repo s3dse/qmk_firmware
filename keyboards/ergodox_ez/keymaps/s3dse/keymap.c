@@ -483,13 +483,18 @@ void matrix_scan_user(void) {
     // }
   }
 }
-
+//LT(4,KC_T),
+// LT(3,KC_N)
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case LGUI_T(KC_A):
             return TAPPING_TERM + 1250;
         case RGUI_T(KC_I):
             return TAPPING_TERM + 1250;
+        case LT(4, KC_T):
+            return TAPPING_TERM - 50;
+        case LT(3, KC_N):
+            return TAPPING_TERM - 50;
         default:
             return TAPPING_TERM;
     }

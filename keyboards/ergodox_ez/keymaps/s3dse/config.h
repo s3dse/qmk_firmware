@@ -4,11 +4,11 @@
 */
 #define ORYX_CONFIGURATOR
 #undef TAPPING_TERM
-#define TAPPING_TERM 174
+#define TAPPING_TERM 200
 #define TAPPING_TERM_PER_KEY
 
-#define PERMISSIVE_HOLD
-
+#define IGNORE_MOD_TAP_INTERRUPT
+//successive tap and hold tapping_term will register as mod
 #define TAPPING_FORCE_HOLD
 
 #define FIRMWARE_VERSION u8"4OmNQ/xDXGW"
