@@ -47,11 +47,12 @@ enum custom_keycodes {
   ST_MACRO_22,
   ST_MACRO_23,
   ST_MACRO_24,
+  ST_MACRO_25,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_ergodox_pretty(
-    KC_TRANSPARENT, KC_1,           KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 TG(1),          KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
+    KC_TRANSPARENT, KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           KC_TRANSPARENT,                                 TG(1),          KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
     KC_TRANSPARENT, LT(7,KC_Q),     KC_D,           KC_R,           KC_W,           KC_B,           KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_J,           KC_F,           KC_U,           KC_P,           LT(7,KC_SCOLON),KC_TRANSPARENT,
     DYN_REC_START1, LGUI_T(KC_A),   KC_S,           LT(9,KC_H),     LT(4,KC_T),     LT(5,KC_G),                                                                     LT(1,KC_Y),     LT(3,KC_N),     KC_E,           KC_O,           RGUI_T(KC_I),   DYN_MACRO_PLAY1,
     KC_TRANSPARENT, LCTL_T(KC_Z),   LALT_T(KC_X),   KC_M,           KC_C,           KC_V,           DYN_REC_START2,                                 DYN_MACRO_PLAY2,KC_K,           KC_L,           KC_COMMA,       RALT_T(KC_DOT), RCTL_T(KC_SLASH),KC_TRANSPARENT,
@@ -93,7 +94,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [4] = LAYOUT_ergodox_pretty(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_F11,
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_MINUS,       KC_EQUAL,       KC_LABK,        KC_RABK,        KC_ASTR,        KC_F12,
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                                                 KC_UNDS,        KC_LCBR,        KC_RCBR,        KC_TRANSPARENT, KC_PLUS,        KC_TRANSPARENT,
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                                                 KC_UNDS,        KC_LCBR,        KC_RCBR,        ST_MACRO_25,    KC_PLUS,        KC_TRANSPARENT,
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_AMPR,        KC_QUOTE,       KC_DQUO,        KC_TRANSPARENT, KC_BSLASH,      KC_TRANSPARENT,
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                                                                                 KC_NO,          KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
                                                                                                     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
@@ -214,6 +215,8 @@ void rgb_matrix_indicators_user(void) {
     break;
   }
 }
+
+static bool shifted = false;
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
@@ -367,6 +370,28 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     }
     break;
+    case LSFT_T(KC_SPACE):
+      shifted = record->event.pressed;
+      return true;
+      break;
+    case RSFT_T(KC_SPACE):
+      shifted = record->event.pressed;
+      return true;
+      break;
+    case ST_MACRO_25:
+      
+      if (record->event.pressed) {
+        if (shifted) {
+
+          unregister_code16(LSFT_T(KC_SPACE));
+          unregister_code16(RSFT_T(KC_SPACE));
+          SEND_STRING("<-");
+        } else {
+          SEND_STRING("->");
+        }
+
+      }
+    break;
     case RGB_SLD:
       if (record->event.pressed) {
         rgblight_mode(1);
@@ -469,28 +494,15 @@ void matrix_scan_user(void) {
       SEND_STRING("git push");
     }
 
-    // SEQ_TWO_KEYS(KC_D, KC_D) {
-    //   SEND_STRING(SS_LCTL("a") SS_LCTL("c"));
-    // }
-    // SEQ_THREE_KEYS(KC_D, KC_D, KC_S) {
-    //   SEND_STRING("https://start.duckduckgo.com\n");
-    // }
-    // SEQ_TWO_KEYS(KC_A, KC_S) {
-    //   register_code(KC_LGUI);
-    //   register_code(KC_S);
-    //   unregister_code(KC_S);
-    //   unregister_code(KC_LGUI);
-    // }
   }
 }
-//LT(4,KC_T),
-// LT(3,KC_N)
+
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case LGUI_T(KC_A):
             return TAPPING_TERM + 1250;
         case RGUI_T(KC_I):
-            return TAPPING_TERM + 1250;
+            return TAPPING_TERM + 1500;
         case LT(4, KC_T):
             return TAPPING_TERM - 50;
         case LT(3, KC_N):
