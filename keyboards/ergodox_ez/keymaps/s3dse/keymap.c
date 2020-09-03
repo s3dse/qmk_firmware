@@ -360,14 +360,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     break;
     case ST_MACRO_23:
     if (record->event.pressed) {
-      SEND_STRING(SS_TAP(X_M) SS_DELAY(100) SS_TAP(X_E) SS_DELAY(100) SS_TAP(X_N) SS_DELAY(100) SS_TAP(X_T));
-
+      SEND_STRING("ment");
     }
     break;
     case ST_MACRO_24:
     if (record->event.pressed) {
-      SEND_STRING(SS_TAP(X_I) SS_DELAY(100) SS_TAP(X_O) SS_DELAY(100) SS_TAP(X_N));
-
+      SEND_STRING("ion");
     }
     break;
     case LSFT_T(KC_SPACE):
