@@ -48,6 +48,7 @@ enum custom_keycodes {
   ST_MACRO_23,
   ST_MACRO_24,
   ST_MACRO_25,
+  ST_MACRO_26,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -95,7 +96,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_F6,          KC_F7,          KC_F8,          KC_F9,          KC_F10,         KC_F11,
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_MINUS,       KC_EQUAL,       KC_LABK,        KC_RABK,        KC_ASTR,        KC_F12,
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                                                 KC_UNDS,        KC_LCBR,        KC_RCBR,        ST_MACRO_25,    KC_PLUS,        KC_TRANSPARENT,
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_AMPR,        KC_QUOTE,       KC_DQUO,        KC_TRANSPARENT, KC_BSLASH,      KC_TRANSPARENT,
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_AMPR,        KC_QUOTE,       KC_DQUO,        ST_MACRO_26,    KC_BSLASH,      KC_TRANSPARENT,
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                                                                                 KC_NO,          KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
                                                                                                     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
                                                                                                                     KC_TRANSPARENT, KC_TRANSPARENT,
@@ -388,6 +389,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           SEND_STRING("->");
         }
 
+      }
+    break;
+    case ST_MACRO_26:
+      if (record->event.pressed) {
+        if (shifted) {
+          unregister_code16(LSFT_T(KC_SPACE));
+          unregister_code16(RSFT_T(KC_SPACE));
+          SEND_STRING("<=");
+        } else {
+          SEND_STRING("=>");
+        }
       }
     break;
     case RGB_SLD:

@@ -7,9 +7,9 @@
 #define TAPPING_TERM 200
 #define TAPPING_TERM_PER_KEY
 
-#define IGNORE_MOD_TAP_INTERRUPT
 //successive tap and hold tapping_term will register as mod
 #define TAPPING_FORCE_HOLD
+#define IGNORE_MOD_TAP_INTERRUPT
 
 #define FIRMWARE_VERSION u8"4OmNQ/xDXGW"
 #define RGB_MATRIX_STARTUP_SPD 60
