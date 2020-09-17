@@ -58,8 +58,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     DYN_REC_START1, LGUI_T(KC_A),   KC_S,           LT(9,KC_H),     LT(4,KC_T),     LT(5,KC_G),                                                                     LT(1,KC_Y),     LT(3,KC_N),     KC_E,           KC_O,           RGUI_T(KC_I),   DYN_MACRO_PLAY1,
     KC_TRANSPARENT, LCTL_T(KC_Z),   LALT_T(KC_X),   KC_M,           KC_C,           KC_V,           DYN_REC_START2,                                 DYN_MACRO_PLAY2,KC_K,           KC_L,           KC_COMMA,       RALT_T(KC_DOT), RCTL_T(KC_SLASH),KC_TRANSPARENT,
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, MO(8),          KC_DELETE,                                                                                                      KC_ESCAPE,      MO(8),          KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
-                                                                                                    ST_MACRO_0,     KC_TRANSPARENT, KC_LEAD, ST_MACRO_1,
-                                                                                                                    LALT(KC_LSHIFT),KC_TRANSPARENT,
+                                                                                                    ST_MACRO_0,     KC_LSHIFT,     KC_LEAD, ST_MACRO_1,
+                                                                                                                    LALT(KC_LSHIFT), KC_TRANSPARENT,
                                                                                     LSFT_T(KC_SPACE),KC_BSPACE,      MO(6),          DYN_REC_STOP,   KC_TAB,         RSFT_T(KC_ENTER)
   ),
   [1] = LAYOUT_ergodox_pretty(
