@@ -16,10 +16,10 @@ enum custom_keycodes {
 };
 
 enum layer_number {
-  _QWERTY = 0,
-  _LOWER,
-  _RAISE,
-  _ADJUST,
+  _WORKMAN = 0,
+  _SYMLEFT,
+  _SYMRIGHT,
+  _NUMRIGHT,
   _NAV,
 };
 
@@ -40,7 +40,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                   `----------------------------'           '------''--------------------'
  */
 
- [_QWERTY] = LAYOUT( \
+ [_WORKMAN] = LAYOUT( \
   KC_ESC,   KC_1,           KC_2,           KC_3,    KC_4,    KC_5,                                   KC_6,    KC_7,          KC_8,    KC_9,    KC_0,    KC_GRV, \
   KC_TAB,   KC_Q,           KC_D,           KC_R,    KC_W,    KC_B,                                   KC_J,    KC_F,          KC_U,    KC_P,    KC_SCOLON,    KC_MINS, \
   KC_LCTRL, LGUI_T(KC_A),   KC_S,           KC_H,    LT(2,KC_T),    LT(3,KC_G),                                   KC_Y,    LT(1,KC_N),    KC_E,    KC_O,    RGUI_T(KC_I), KC_QUOT, \
@@ -61,7 +61,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                   |      |      |      |/       /         \      \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
-[_LOWER] = LAYOUT( \
+[_SYMLEFT] = LAYOUT( \
   _______, KC_F1,          KC_F2,          KC_F3,          KC_F4,          KC_F5,                       _______, _______, _______,_______, _______, RESET,\
   _______, KC_EXLM,        KC_AT,          KC_LPRN,        KC_RPRN,        KC_PIPE,                     _______, _______, _______,_______, _______, _______,\
   _______, KC_HASH,        KC_DLR,         KC_LBRACKET,    KC_RBRACKET,    KC_GRAVE,                    _______, XXXXXXX, _______,_______, _______, _______,\
@@ -83,7 +83,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                   `----------------------------'           '------''--------------------'
  */
 
-[_RAISE] = LAYOUT( \
+[_SYMRIGHT] = LAYOUT( \
   _______, _______, _______, _______, _______, _______,                     KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11, \
   _______, _______, _______, _______, _______, _______,                        KC_MINUS,    KC_EQUAL,    KC_LABK,    KC_RABK,    KC_ASTR,    _______, \
   _______, _______, _______, _______, XXXXXXX, _______,                     KC_UNDS, KC_LCBR, KC_RCBR, ST_MACRO_0,   KC_PLUS, _______, \
@@ -104,7 +104,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                   |      |      |      |/       /         \      \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
-  [_ADJUST] = LAYOUT( \
+  [_NUMRIGHT] = LAYOUT( \
   _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______, \
   _______, _______, _______, _______, _______, _______,                   _______, KC_7, KC_8, KC_9, KC_COMMA, _______, \
   _______, _______, _______, _______, _______, XXXXXXX,                   _______, KC_4, KC_5, KC_6, KC_0, _______, \
