@@ -10,6 +10,11 @@
 
 extern uint8_t is_master;
 
+enum custom_keycodes {
+  ST_MACRO_0 = SAFE_RANGE,
+  ST_MACRO_1,
+};
+
 enum layer_number {
   _QWERTY = 0,
   _LOWER,
@@ -81,8 +86,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_RAISE] = LAYOUT( \
   _______, _______, _______, _______, _______, _______,                     KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11, \
   _______, _______, _______, _______, _______, _______,                        KC_MINUS,    KC_EQUAL,    KC_LABK,    KC_RABK,    KC_ASTR,    _______, \
-  _______, _______, _______, _______, XXXXXXX, _______,                     KC_UNDS, KC_LCBR, KC_RCBR, KC_UP,   KC_PLUS, _______, \
-  _______, _______, _______, _______, _______, _______,  _______, _______,  KC_AMPR, KC_QUOTE, KC_DQUO,  KC_LBRC, KC_BSLASH, _______, \
+  _______, _______, _______, _______, XXXXXXX, _______,                     KC_UNDS, KC_LCBR, KC_RCBR, ST_MACRO_0,   KC_PLUS, _______, \
+  _______, _______, _______, _______, _______, _______,  _______, _______,  KC_AMPR, KC_QUOTE, KC_DQUO,  ST_MACRO_1, KC_BSLASH, _______, \
                              _______, _______, _______,  _______, _______,  _______, _______, _______ \
 ),
 /* ADJUST
@@ -161,7 +166,49 @@ void oled_task_user(void) {
 }
 #endif // OLED_DRIVER_ENABLE
 
+static bool shifted = false;
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode)
+  {
+  case LSFT_T(KC_SPACE):
+      shifted = record->event.pressed;
+      return true;
+      break;
+    case RSFT_T(KC_ENTER):
+      shifted = record->event.pressed;
+      return true;
+      break;
+    case ST_MACRO_0:
+      
+      if (record->event.pressed) {
+        if (shifted) {
+
+          unregister_code16(LSFT_T(KC_SPACE));
+          unregister_code16(RSFT_T(KC_ENTER));
+          SEND_STRING("<-");
+        } else {
+          SEND_STRING("->");
+        }
+
+      }
+    break;
+    case ST_MACRO_1:
+      if (record->event.pressed) {
+        if (shifted) {
+          unregister_code16(LSFT_T(KC_SPACE));
+          unregister_code16(RSFT_T(KC_ENTER));
+          SEND_STRING("<=");
+          
+        } else {
+          SEND_STRING("=>");
+        }
+      }
+    break;
+  
+  default:
+    break;
+  }
   if (record->event.pressed) {
 #ifdef OLED_DRIVER_ENABLE
     set_keylog(keycode, record);
