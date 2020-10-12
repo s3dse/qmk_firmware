@@ -71,8 +71,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  [_WORKMAN] = LAYOUT( \
   MO(5),   KC_1,           KC_2,           KC_3,    KC_4,    KC_5,                                   KC_6,    KC_7,          KC_8,    KC_9,    KC_0,    MO(5), \
   KC_TAB,   KC_Q,           KC_D,           KC_R,    KC_W,    KC_B,                                   KC_J,    KC_F,          KC_U,    KC_P,    KC_SCOLON,    KC_MINS, \
-  KC_LCTRL, LGUI_T(KC_A),   KC_S,           KC_H,    LT(2,KC_T),    LT(3,KC_G),                                   KC_Y,    LT(1,KC_N),    KC_E,    KC_O,    RGUI_T(KC_I), KC_QUOT, \
-  KC_LSFT,  LCTL_T(KC_Z),   LALT_T(KC_X),   KC_M,    KC_C,    KC_V,       MO(4),          KC_TAB,  KC_K,    KC_L,         KC_COMMA, RALT_T(KC_DOT),  RCTL_T(KC_SLASH),  KC_RSFT, \
+  DYN_REC_START1, LGUI_T(KC_A),   KC_S,           KC_H,    LT(2,KC_T),    LT(3,KC_G),                                   KC_Y,    LT(1,KC_N),    KC_E,    KC_O,    RGUI_T(KC_I), DYN_MACRO_PLAY1, \
+  DYN_REC_START2,  LCTL_T(KC_Z),   LALT_T(KC_X),   KC_M,    KC_C,    KC_V,       MO(4),          DYN_REC_STOP,  KC_K,    KC_L,         KC_COMMA, RALT_T(KC_DOT),  RCTL_T(KC_SLASH),  DYN_MACRO_PLAY2, \
                                             MO(6), KC_DELETE, LSFT_T(KC_SPACE), KC_BSPACE, KC_TAB, RSFT_T(KC_ENTER), KC_ESCAPE, MO(6) \
 ),
 /* LOWER
