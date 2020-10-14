@@ -11,6 +11,7 @@
 #define L_UMLAUT (1 << 5)
 #define L_EDIT (1 << 6)
 #define L_MEDIA (1 << 7)
+#define L_GAME (1 << 8)
 
 char layer_state_str[24];
 
@@ -40,6 +41,9 @@ const char *read_layer_state(void) {
     break;
   case L_MEDIA:
     snprintf(layer_state_str, sizeof(layer_state_str), "layer: Media");
+    break;
+  case L_GAME:
+    snprintf(layer_state_str, sizeof(layer_state_str), "layer: Game");
     break;
   default:
     snprintf(layer_state_str, sizeof(layer_state_str), "Layer: Undef-%ld", layer_state);
