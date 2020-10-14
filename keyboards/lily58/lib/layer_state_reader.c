@@ -10,6 +10,7 @@
 #define L_NAV (1 << 4)
 #define L_UMLAUT (1 << 5)
 #define L_EDIT (1 << 6)
+#define L_MEDIA (1 << 7)
 
 char layer_state_str[24];
 
@@ -36,6 +37,9 @@ const char *read_layer_state(void) {
     break;
   case L_EDIT:
     snprintf(layer_state_str, sizeof(layer_state_str), "layer: Edit");
+    break;
+  case L_MEDIA:
+    snprintf(layer_state_str, sizeof(layer_state_str), "layer: Media");
     break;
   default:
     snprintf(layer_state_str, sizeof(layer_state_str), "Layer: Undef-%ld", layer_state);

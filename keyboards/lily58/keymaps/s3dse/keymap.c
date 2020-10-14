@@ -49,6 +49,7 @@ enum layer_number {
   _NAV,
   _UMLAUT,
   _EDIT,
+  _MEDIA,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -69,11 +70,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
  [_WORKMAN] = LAYOUT( \
-  MO(5),   KC_1,           KC_2,           KC_3,    KC_4,    KC_5,                                   KC_6,    KC_7,          KC_8,    KC_9,    KC_0,    MO(5), \
-  KC_TAB,   KC_Q,           KC_D,           KC_R,    KC_W,    KC_B,                                   KC_J,    KC_F,          KC_U,    KC_P,    KC_SCOLON,    KC_MINS, \
-  DYN_REC_START1, LGUI_T(KC_A),   KC_S,           KC_H,    LT(2,KC_T),    LT(3,KC_G),                                   KC_Y,    LT(1,KC_N),    KC_E,    KC_O,    RGUI_T(KC_I), DYN_MACRO_PLAY1, \
-  DYN_REC_START2,  LCTL_T(KC_Z),   LALT_T(KC_X),   KC_M,    KC_C,    KC_V,       MO(4),          DYN_REC_STOP,  KC_K,    KC_L,         KC_COMMA, RALT_T(KC_DOT),  RCTL_T(KC_SLASH),  DYN_MACRO_PLAY2, \
-                                            MO(6), KC_DELETE, LSFT_T(KC_SPACE), KC_BSPACE, KC_TAB, RSFT_T(KC_ENTER), KC_ESCAPE, MO(6) \
+  MO(5),            KC_1,           KC_2,           KC_3,    KC_4,        KC_5,                                       KC_6,    KC_7,          KC_8,      KC_9,            KC_0,               MO(5), \
+  MO(5),            KC_1,           KC_2,           KC_3,    KC_4,        KC_5,                                       KC_6,    KC_7,          KC_8,      KC_P,            KC_SCOLON,          KC_MINS, \
+  DYN_REC_START1,   LGUI_T(KC_A),   KC_S,           KC_H,    LT(2,KC_T),  LT(3,KC_G),                                 LT(7,KC_Y),    LT(1,KC_N),    KC_E,      KC_O,            RGUI_T(KC_I),       DYN_MACRO_PLAY1, \
+  DYN_REC_START2,   LCTL_T(KC_Z),   LALT_T(KC_X),   KC_M,    KC_C,        KC_V,       MO(4),          DYN_REC_STOP,   KC_K,    KC_L,       KC_COMMA,  RALT_T(KC_DOT),  RCTL_T(KC_SLASH),   DYN_MACRO_PLAY2, \
+                                            MO(6), KC_DELETE, LSFT_T(KC_SPACE), KC_BSPACE,              KC_TAB,   RSFT_T(KC_ENTER), KC_ESCAPE, MO(6) \
 ),
 /* LOWER
  * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -162,6 +163,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, _______, ST_MACRO_11, ST_MACRO_12, ST_MACRO_13, ST_MACRO_14,  ST_MACRO_17, ST_MACRO_18, ST_MACRO_19, _______, _______, _______, \
   XXXXXXX, _______, _______, _______, _______, _______, _______, _______, ST_MACRO_20, ST_MACRO_21, ST_MACRO_22, _______, _______, XXXXXXX,\
                              _______, _______, _______, _______, _______,  _______, _______, _______ \
+  ),
+  ,
+  
+  [_MEDIA] = LAYOUT( \
+  _______, _______,      _______,    _______,    _______,     _______,                                _______, _______, _______, _______, _______, _______, \
+  _______, KC_MS_ACCEL2, _______,    KC_MS_UP,   _______,     _______,                                _______, _______, _______, _______, _______, _______, \
+  _______, KC_MS_ACCEL1, KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT, _______,                                XXXXXXX, _______, _______, _______, KC_HYPR, KC_MEDIA_PLAY_PAUSE, \
+  _______, KC_MS_ACCEL0, _______,    _______,    _______,     _______,       _______,         _______, _______, _______, _______, _______, _______, _______,\
+                                    _______,     KC_MS_WH_UP, KC_MS_WH_DOWN, KC_MS_BTN1,        KC_MS_BTN2,  KC_AUDIO_VOL_UP,KC_AUDIO_VOL_DOWN,KC_AUDIO_MUTE \
   )
 };
 
