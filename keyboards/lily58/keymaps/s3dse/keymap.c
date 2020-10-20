@@ -26,12 +26,12 @@ enum custom_keycodes {
   ST_MACRO_12,
   ST_MACRO_13,
   ST_MACRO_14,
-  ST_MACRO_15,
+  MC_SEL_ALL,
   ST_MACRO_16,
-  ST_MACRO_17,
+  MC_EXP_SEL,
   ST_MACRO_18,
   ST_MACRO_19,
-  ST_MACRO_20,
+  MC_SHR_SEL,
   ST_MACRO_21,
   ST_MACRO_22,
   ST_MACRO_23,
@@ -160,10 +160,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   
   [_EDIT] = LAYOUT( \
   _______, _______, _______, _______, _______, _______,                  _______, _______, _______, _______, _______, _______, \
-  _______, _______, _______, ST_MACRO_10, _______, _______,              ST_MACRO_15, ST_MACRO_16, _______, _______, _______, _______, \
-  _______, _______, ST_MACRO_11, ST_MACRO_12, ST_MACRO_13, ST_MACRO_14,  ST_MACRO_17, ST_MACRO_18, ST_MACRO_19, _______, _______, _______, \
-  XXXXXXX, _______, _______, _______, _______, _______, _______, _______, ST_MACRO_20, ST_MACRO_21, ST_MACRO_22, _______, _______, XXXXXXX,\
-                             _______, _______, _______, _______, _______,  _______, _______, _______ \
+  _______, _______, _______, ST_MACRO_10, _______, _______,              MC_SEL_ALL, ST_MACRO_16, _______, _______, _______, _______, \
+  _______, _______, ST_MACRO_11, ST_MACRO_12, ST_MACRO_13, ST_MACRO_14,  MC_EXP_SEL, ST_MACRO_18, ST_MACRO_19, _______, _______, _______, \
+  _______, _______, _______, _______, _______, _______, _______, _______, MC_SHR_SEL, ST_MACRO_21, ST_MACRO_22, _______, _______, _______,\
+                             XXXXXXX, _______, _______, _______, _______,  _______, _______, XXXXXXX \
   ),
   
   [_MEDIA] = LAYOUT( \
@@ -327,7 +327,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     }
     break;
-    case ST_MACRO_15:
+    case MC_SEL_ALL:
     if (record->event.pressed) {
       SEND_STRING(SS_LGUI(SS_TAP(X_F2)));
 
@@ -339,7 +339,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     }
     break;
-    case ST_MACRO_17:
+    case MC_EXP_SEL:
     if (record->event.pressed) {
       SEND_STRING(SS_LCTL(SS_LSFT(SS_TAP(X_RIGHT))));
 
@@ -357,7 +357,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     }
     break;
-    case ST_MACRO_20:
+    case MC_SHR_SEL:
     if (record->event.pressed) {
       SEND_STRING(SS_LCTL(SS_LSFT(SS_TAP(X_LEFT))));
 
