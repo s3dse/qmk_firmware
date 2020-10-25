@@ -169,7 +169,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_MEDIA] = LAYOUT( \
   _______, _______,      _______,    _______,    _______,     _______,                                _______, _______, _______, _______, _______, _______, \
   _______, KC_MS_ACCEL2, _______,    KC_MS_UP,   _______,     _______,                                _______, _______, _______, _______, _______, _______, \
-  _______, KC_MS_ACCEL1, KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT, _______,                                XXXXXXX, _______, _______, _______, KC_HYPR, KC_MEDIA_PLAY_PAUSE, \
+  _______, KC_MS_ACCEL1, KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT, _______,                                XXXXXXX, KC_BRIU, KC_BRID, _______, KC_HYPR, KC_MEDIA_PLAY_PAUSE, \
   _______, KC_MS_ACCEL0, _______,    _______,    _______,     _______,       _______,         _______, _______, _______, _______, _______, _______, _______,\
                                     _______,     KC_MS_WH_UP, KC_MS_WH_DOWN, KC_MS_BTN1,        KC_MS_BTN2,  KC_AUDIO_VOL_UP,KC_AUDIO_VOL_DOWN,KC_AUDIO_MUTE \
   ),
