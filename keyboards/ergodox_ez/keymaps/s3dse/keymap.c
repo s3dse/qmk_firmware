@@ -514,9 +514,9 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case RGUI_T(KC_I):
             return TAPPING_TERM + 500;
         case LT(4, KC_T):
-            return TAPPING_TERM - 50;
+            return TAPPING_TERM - 20;
         case LT(3, KC_N):
-            return TAPPING_TERM - 50;
+            return TAPPING_TERM - 20;
         default:
             return TAPPING_TERM;
     }
