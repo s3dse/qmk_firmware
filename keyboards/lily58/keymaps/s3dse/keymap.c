@@ -50,7 +50,8 @@ enum layer_number {
   _UMLAUT,
   _EDIT,
   _MEDIA,
-  _GAME,
+  //_GAME,
+  _QWERTY,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -174,13 +175,35 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                     _______,     KC_MS_WH_UP, KC_MS_WH_DOWN, KC_MS_BTN1,        KC_MS_BTN2,  KC_AUDIO_VOL_UP,KC_AUDIO_VOL_DOWN,KC_AUDIO_MUTE \
   ),
 
-  [_GAME] = LAYOUT( \
+  /* [_GAME] = LAYOUT( \
   KC_ESCAPE, KC_F1,      KC_F2,    KC_F3,    KC_F4,     KC_F5,                                _______, _______, _______, _______, _______, _______, \
   KC_TAB, KC_Q, KC_W,    KC_E,   KC_R,     KC_T,                                _______, _______, _______, _______, _______, _______, \
   KC_LSHIFT, KC_A, KC_S, KC_D, KC_F, KC_G,                                _______, _______, _______, _______, _______, _______, \
   KC_LCTRL, KC_Y, _______,    _______,    _______,     KC_I,       _______,         _______, _______, _______, _______, _______, _______, _______,\
-                                    KC_F9,     _______, KC_LALT, _______,        _______,  _______,_______,_______ \
-  )
+                                    KC_F9,     KC_LALT, _______, _______,        _______,  _______,_______,_______ \
+  ), */
+  /* QWERTY
+ * ,-----------------------------------------.                    ,-----------------------------------------.
+ * | ESC  |   1  |   2  |   3  |   4  |   5  |                    |   6  |   7  |   8  |   9  |   0  |  `   |
+ * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ * | Tab  |   Q  |   W  |   E  |   R  |   T  |                    |   Y  |   U  |   I  |   O  |   P  |  -   |
+ * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
+ * |LCTRL |   A  |   S  |   D  |   F  |   G  |-------.    ,-------|   H  |   J  |   K  |   L  |   ;  |  '   |
+ * |------+------+------+------+------+------|   [   |    |    ]  |------+------+------+------+------+------|
+ * |LShift|   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |RShift|
+ * `-----------------------------------------/       /     \      \-----------------------------------------'
+ *                   | LAlt | LGUI |LOWER | /Space  /       \Enter \  |RAISE |BackSP| RGUI |
+ *                   |      |      |      |/       /         \      \ |      |      |      |
+ *                   `----------------------------'           '------''--------------------'
+ */
+
+ [_QWERTY] = LAYOUT( \
+  KC_ESC,   KC_1,   KC_2,    KC_3,    KC_4,    KC_5,                     KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_GRV, \
+  KC_TAB,   KC_Q,   KC_W,    KC_E,    KC_R,    KC_T,                     KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS, \
+  KC_LSFT, KC_A,   KC_S,    KC_D,    KC_F,    KC_G,                     KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, _______, \
+  KC_LCTRL,  KC_Z,   KC_X,    KC_C,    KC_V,    KC_B, KC_LBRC,  KC_RBRC,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFT, \
+                        KC_LALT, KC_LGUI, KC_SPC, KC_BSPC, KC_TAB, KC_ENTER, KC_BSPC, KC_RGUI \
+),
 };
 
 // Setting ADJUST layer RGB back to default
