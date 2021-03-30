@@ -75,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                       //`--------------------------'  `--------------------------'
   ),
   [_SYMLEFT] = LAYOUT( \
-  _______, KC_EXLM,        KC_AT,          KC_LPRN,        KC_RPRN,        KC_PIPE,                     _______, _______, _______,_______, _______, _______,\
+  _______, KC_EXLM,        KC_AT,          KC_LPRN,        KC_RPRN,        KC_PIPE,                     _______, _______, _______,_______, _______, RESET,\
   _______, KC_HASH,        KC_DLR,         KC_LBRACKET,    KC_RBRACKET,    KC_GRAVE,                    _______, XXXXXXX, _______,_______, _______, _______,\
   _______, KC_PERC,        KC_CIRC,        KC_SCOLON,      KC_COLN,        KC_TILD,                     _______, _______, _______,_______, _______, _______,\
                             _______, _______, _______, _______,  _______, _______ \
@@ -409,9 +409,9 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case RGUI_T(KC_I):
             return TAPPING_TERM + 500;
         case LT(4, KC_T):
-            return TAPPING_TERM - 50;
+            return TAPPING_TERM - 100;
         case LT(3, KC_N):
-            return TAPPING_TERM - 50;
+            return TAPPING_TERM - 100;
         default:
             return TAPPING_TERM;
     }
