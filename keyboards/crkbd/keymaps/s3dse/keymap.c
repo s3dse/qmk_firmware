@@ -26,6 +26,7 @@ enum layer_number {
   _UMLAUT,
   _EDIT,
   _MEDIA,
+  _FN,
   //_GAME,
   _QWERTY,
 };
@@ -69,9 +70,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_WORKMAN] = LAYOUT_split_3x6_3( \
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
   MO(5), KC_Q, KC_D, KC_R, KC_W, LT(4, KC_B),                                       KC_J,    KC_F,        KC_U,      KC_P, KC_SCOLON,     MO(5), \
-  KC_LGUI, LGUI_T(KC_A), KC_S, KC_H, LT(2,KC_T), LT(3,KC_G),                     LT(7,KC_Y), LT(1,KC_N),    KC_E,      KC_O, RGUI_T(KC_I),  TG(8), \
+  KC_LGUI, LGUI_T(KC_A), KC_S, KC_H, LT(2,KC_T), LT(3,KC_G),                     LT(7,KC_Y), LT(1,KC_N),    KC_E,      KC_O, RGUI_T(KC_I),  TG(_QWERTY), \
   MO(6),   LCTL_T(KC_Z),   LALT_T(KC_X),   KC_M,    KC_C, KC_V,         KC_K,    KC_L,       KC_COMMA,  RALT_T(KC_DOT),  RCTL_T(KC_SLASH),   MO(6), \
-                        KC_DELETE, LSFT_T(KC_SPACE), KC_BSPACE,              KC_TAB,   RSFT_T(KC_ENTER), KC_ESCAPE \
+                        KC_DELETE, LSFT_T(KC_SPACE), KC_BSPACE,              LT(_FN, KC_TAB),   RSFT_T(KC_ENTER), KC_ESCAPE \
                                       //`--------------------------'  `--------------------------'
   ),
   [_SYMLEFT] = LAYOUT( \
@@ -88,7 +89,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 [_NUMRIGHT] = LAYOUT( \
   _______, _______, _______, _______, _______, _______,                   _______, KC_7, KC_8, KC_9, KC_COMMA, _______, \
-  _______, _______, _______, _______, _______, XXXXXXX,                   _______, KC_4, KC_5, KC_6, KC_0, _______, \
+  _______, _______, _______, _______, MO(_FN), XXXXXXX,                   _______, KC_4, KC_5, KC_6, KC_0, _______, \
   _______, _______, _______, _______, _______, _______,                   _______, KC_1, KC_2, KC_3, KC_DOT, _______,\
                             _______, _______, _______,                    _______,  _______, _______ \
 ),
@@ -117,6 +118,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, KC_MS_ACCEL0, _______,    _______,    _______,     _______,                                _______, _______, _______, _______, _______, _______,\
                                  KC_MS_WH_UP, KC_MS_WH_DOWN, KC_MS_BTN1,                              KC_MS_BTN2, KC_AUDIO_VOL_UP,KC_AUDIO_VOL_DOWN \
   ),
+
+  [_FN] = LAYOUT( \
+  _______, _______, _______, _______, _______, _______,                      _______, KC_F7, KC_F8, KC_F9, KC_COMMA, _______, \
+  _______, _______, _______, _______, _______, _______,                      _______, KC_F4, KC_F5, KC_F6, KC_F10, _______, \
+  _______, _______, _______, _______, _______, _______,                      _______, KC_F1, KC_F2, KC_F3, KC_DOT, _______,\
+                            _______, _______, _______,                       _______,  _______, _______ \
+  ),
+
   [_QWERTY] = LAYOUT( \
   KC_ESC,   KC_Q,   KC_W,    KC_E,    KC_R,    KC_T,                     KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_MINS, \
   KC_LSFT, KC_A,   KC_S,    KC_D,    KC_F,    KC_G,                     KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, _______, \
@@ -402,17 +411,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   return true;
 }
 
-// uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
-//     switch (keycode) {
-//         case LGUI_T(KC_A):
-//             return TAPPING_TERM + 500;
-//         case RGUI_T(KC_I):
-//             return TAPPING_TERM + 500;
-//         case LT(4, KC_T):
-//             return TAPPING_TERM - 100;
-//         case LT(3, KC_N):
-//             return TAPPING_TERM - 100;
-//         default:
-//             return TAPPING_TERM;
-//     }
-// }
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LGUI_T(KC_A):
+            return TAPPING_TERM + 500;
+        case RGUI_T(KC_I):
+            return TAPPING_TERM + 500;
+        case LT(_NUMRIGHT, KC_G):
+            return TAPPING_TERM + 500;
+        case LT(4, KC_T):
+            return TAPPING_TERM - 200;
+        case LT(3, KC_N):
+            return TAPPING_TERM - 100;
+        default:
+            return TAPPING_TERM;
+    }
+}

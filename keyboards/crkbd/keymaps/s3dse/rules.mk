@@ -9,3 +9,4 @@ SRC +=  ./lib/glcdfont.c \
         # ./lib/timelogger.c \
 
 BOOTLOADER = qmk-dfu
+NKRO_ENABLE = no
