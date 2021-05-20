@@ -31,6 +31,7 @@ enum layer_number {
   _EDIT,
   _MEDIA,
   _FN,
+  _RGB,
   //_GAME,
   _QWERTY,
 };
@@ -76,7 +77,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   MO(5), KC_Q, KC_D, KC_R, KC_W, LT(4, KC_B),                                       KC_J,    KC_F,        KC_U,      KC_P, KC_SCOLON,     MO(5), \
   KC_LGUI, LGUI_T(KC_A), KC_S, KC_H, LT(2,KC_T), LT(3,KC_G),                     LT(7,KC_Y), LT(1,KC_N),    KC_E,      KC_O, RGUI_T(KC_I),  TG(_QWERTY), \
   MO(6),   LCTL_T(KC_Z),   LALT_T(KC_X),   KC_M,    KC_C, KC_V,         KC_K,    KC_L,       KC_COMMA,  LALT_T(KC_DOT),  RCTL_T(KC_SLASH),   MO(6), \
-                        KC_DELETE, LSFT_T(KC_SPACE), KC_BSPACE,              LT(_FN, KC_TAB),   RSFT_T(KC_ENTER), KC_ESCAPE \
+                        KC_DELETE, LSFT_T(KC_SPACE), KC_BSPACE,              LT(_FN, KC_TAB),   RSFT_T(KC_ENTER), LT(KC_ESCAPE, _RGB) \
                                       //`--------------------------'  `--------------------------'
   ),
   [_SYMLEFT] = LAYOUT( \
@@ -127,6 +128,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, _______, _______, _______, _______, _______,                      _______, KC_F7, KC_F8, KC_F9, KC_COMMA, _______, \
   _______, _______, _______, _______, _______, _______,                      _______, KC_F4, KC_F5, KC_F6, KC_F10, _______, \
   _______, _______, _______, _______, _______, _______,                      _______, KC_F1, KC_F2, KC_F3, KC_DOT, _______,\
+                            _______, _______, _______,                       _______,  _______, _______ \
+  ),
+
+  [_RGB] = LAYOUT( \
+  RGB_M_P, RGB_M_SW, RGB_M_R, RGB_M_B, RGB_MOD, RGB_TOG,                      _______, _______, _______, _______, _______, _______, \
+  _______, _______, RGB_SPI, RGB_HUI, RGB_SAI, RGB_VAI,                      _______, _______, _______, _______, _______, _______, \
+  _______, _______, RGB_SPD, RGB_HUD, RGB_SAD, RGB_VAD,                      _______, _______, _______, _______, _______, _______,\
                             _______, _______, _______,                       _______,  _______, _______ \
   ),
 
